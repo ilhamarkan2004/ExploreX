@@ -43,15 +43,15 @@
                     android:textSize="14dp" />
 
                 <TextView
+                    android:id="@+id/save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Simpan"
-                    android:layout_marginRight="10dp"
-                    android:textSize="14dp"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:text="Save"
                     android:textColor="@color/colorBlack"
-                    android:id="@+id/save"/>
+                    android:textSize="14dp" />
 
             </RelativeLayout>
 
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Ubah Foto"
+            android:text="Change Photo"
             android:textColor="@color/colorBlack"
             android:textSize="13dp" />
 

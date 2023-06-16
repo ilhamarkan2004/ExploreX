@@ -34,20 +34,20 @@
         android:inputType="textPassword"/>
 
     <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
         android:layout_marginTop="15sp"
-        android:text="MASUK"
-        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_background"
         android:padding="10dp"
-        android:id="@+id/login"/>
+        android:text="Log In"
+        android:textColor="@color/colorWhite" />
 
     <TextView
+        android:id="@+id/register_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tidak punya akun? Daftar"
         android:layout_marginTop="15dp"
-        android:id="@+id/register_user"/>
+        android:text="Tidak punya akun? Register" />
 
 </LinearLayout>

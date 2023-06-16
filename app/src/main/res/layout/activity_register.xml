@@ -52,20 +52,20 @@
         android:inputType="textPassword"/>
 
     <Button
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
         android:layout_marginTop="15sp"
-        android:text="DAFTAR"
-        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_background"
         android:padding="10dp"
-        android:id="@+id/register"/>
+        android:text="Register"
+        android:textColor="@color/colorWhite" />
 
     <TextView
+        android:id="@+id/login_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sudah punya akun? Masuk"
         android:layout_marginTop="15dp"
-        android:id="@+id/login_user"/>
+        android:text="Sudah punya akun? Log In" />
 
 </LinearLayout>
