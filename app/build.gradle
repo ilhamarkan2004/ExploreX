@@ -21,6 +21,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Dependensi JUnit 4
+    testImplementation 'junit:junit:4.12'
+    // Dependensi Mockito
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    // Dependensi JUnit 5 jika Anda ingin menggunakan versi terbaru
+    // testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 

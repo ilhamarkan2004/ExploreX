@@ -38,7 +38,7 @@ import java.util.List;
 
 public class PostActivity extends AppCompatActivity {
 
-    private Uri imageUri;
+    Uri imageUri;
     private String imageUrl;
 
     private ImageView close;
@@ -46,10 +46,10 @@ public class PostActivity extends AppCompatActivity {
     private TextView post;
     SocialAutoCompleteTextView description;
 
-    private static final int PICK_IMAGE_REQUEST = 1;
+    static final int PICK_IMAGE_REQUEST = 1;
 
-    private StorageReference storageReference;
-    private DatabaseReference databaseReference;
+    StorageReference storageReference;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,14 +87,14 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
-    private void openFileChooser() {
+    void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
-    private void upload() {
+    void upload() {
         if (imageUri != null) {
             final ProgressDialog pd = new ProgressDialog(this);
             pd.setMessage("Uploading");
@@ -158,7 +158,7 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
-    private String getFileExtension(Uri uri) {
+    String getFileExtension(Uri uri) {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(getContentResolver().getType(uri));
     }
@@ -202,5 +202,9 @@ public class PostActivity extends AppCompatActivity {
         });
 
         description.setHashtagAdapter(hashtagAdapter);
+    }
+
+    void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
