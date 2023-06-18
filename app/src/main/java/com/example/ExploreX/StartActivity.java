@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
 
-    private static final int SPLASH_DURATION = 3000; // Durasi tampilan splash screen dalam milidetik (misalnya 3000ms = 3 detik)
+    private static final int SPLASH_DURATION = 1000; // Durasi tampilan splash screen dalam milidetik (misalnya 3000ms = 3 detik)
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
 

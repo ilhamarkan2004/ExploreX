@@ -28,6 +28,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -244,17 +246,35 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             }
 
             private void deletePost(final Post post) {
-                FirebaseDatabase.getInstance().getReference().child("Posts").child(post.getPostid()).removeValue(new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                        if (error == null) {
-                            Toast.makeText(mContext, "Postingan dihapus", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(mContext, "Gagal menghapus postingan", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                DatabaseReference postRef = FirebaseDatabase.getInstance().getReference("Posts").child(post.getPostid());
+                postRef.removeValue()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Remove the post from the local list
+                                int position = mPosts.indexOf(post);
+                                if (position != -1) {
+                                    mPosts.remove(position);
+                                    notifyItemRemoved(position);
+                                    notifyItemRangeChanged(position, mPosts.size());
+                                }
+
+                                // Show a toast message to confirm deletion
+                                Toast.makeText(mContext, "Post deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Show an error message if deletion fails
+                                Toast.makeText(mContext, "Failed to delete post", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
+
+
+
+
 
             private void downloadPost(final Post post) {
                 Glide.with(mContext)
