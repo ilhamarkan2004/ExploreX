@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,9 +41,9 @@ public class EditProfileActivity extends AppCompatActivity {
     private CircleImageView imageProfile;
     private TextView save;
     private TextView changePhoto;
-    private MaterialEditText fullname;
-    private MaterialEditText username;
-    private MaterialEditText bio;
+    private EditText fullname;
+    private EditText username;
+    private EditText bio;
 
     private FirebaseUser fUser;
 
