@@ -7,6 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,6 +26,8 @@ import com.example.ExploreX.Fragments.SearchFragment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,64 +41,139 @@ import com.example.ExploreX.Fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView;
-    private Fragment selectorFragment;
+    private int selectedtab = 1;
+
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        replaceFragment(new HomeFragment());
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        final LinearLayout homeLayout = findViewById(R.id.homeLayout);
+        final LinearLayout documentLayout = findViewById(R.id.documentLayout);
+        final LinearLayout profileLayout = findViewById(R.id.profileLayout);
+        final LinearLayout notifLayout = findViewById(R.id.notifLayout);
+        final LinearLayout searchLayout = findViewById(R.id.searchLayout);
 
-                switch (menuItem.getItemId()){
-                    case R.id.nav_home :
-                        selectorFragment = new HomeFragment();
-                        break;
+        final LinearLayout homeNavbar = findViewById(R.id.homeNavbar);
+        final LinearLayout documentNavbar = findViewById(R.id.documentNavbar);
+        final LinearLayout profileNavbar = findViewById(R.id.profileNavbar);
+        final LinearLayout notifNavbar = findViewById(R.id.notifNavbar);
+        final LinearLayout searchNavbar = findViewById(R.id.searchNavbar);
 
-                    case R.id.nav_search :
-                        selectorFragment = new SearchFragment();
-                        break;
+        final ImageView homeImage = findViewById(R.id.homeImage);
+        final ImageView documentImage = findViewById(R.id.documentImage);
+        final ImageView profileImage = findViewById(R.id.profileImage);
+        final ImageView notifImage = findViewById(R.id.notifImage);
+        final ImageView searchImage = findViewById(R.id.searchImage);
 
-                    case R.id.nav_add :
-                        selectorFragment = null;
-                        startActivity(new Intent(MainActivity.this , PostActivity.class));
-                        break;
+        final TextView homeText = findViewById(R.id.homeText);
+        final TextView documentText = findViewById(R.id.documentText);
+        final TextView profileText = findViewById(R.id.profileText);
+        final TextView notifText = findViewById(R.id.notifText);
+        final TextView searchText = findViewById(R.id.searchText);
 
-                    case R.id.nav_heart :
-                        selectorFragment = new NotificationFragment();
-                        break;
 
-                    case R.id.nav_profile :
-                        selectorFragment = new ProfileFragment();
-                        break;
-                }
+        linearLayout = findViewById(R.id.navbarLayout);
 
-                if (selectorFragment != null){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , selectorFragment).commit();
-                }
+        homeLayout.setOnClickListener(v -> {
+            if (selectedtab != 1) {
 
-                return  true;
+                documentNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                profileNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                searchNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                notifNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
+                homeNavbar.setBackgroundResource(R.color.colorBrown);
+
+                replaceFragment(new HomeFragment());
+
+                selectedtab = 1;
+            }
+        });
+        searchLayout.setOnClickListener(v -> {
+            if (selectedtab != 2) {
+
+                documentNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                profileNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                homeNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                notifNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+                searchNavbar.setBackgroundResource(R.color.colorBrown);
+
+                replaceFragment(new SearchFragment());
+
+                selectedtab = 2;
+            }
+        });
+        documentLayout.setOnClickListener(v -> {
+            if (selectedtab != 3) {
+
+                homeNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                profileNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                searchNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                notifNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+                documentNavbar.setBackgroundResource(R.color.colorBrown);
+
+                startActivity(new Intent(MainActivity.this , PostActivity.class));
+
+                selectedtab = 3;
+            }
+        });
+        notifLayout.setOnClickListener(v -> {
+            if (selectedtab != 4) {
+
+                documentNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                profileNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                searchNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                homeNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+                notifNavbar.setBackgroundResource(R.color.colorBrown);
+
+                replaceFragment(new NotificationFragment());
+
+                selectedtab = 4;
+            }
+        });
+        profileLayout.setOnClickListener(v -> {
+            if (selectedtab != 5) {
+
+                documentNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                homeNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                searchNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                notifNavbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+                profileNavbar.setBackgroundResource(R.color.colorBrown);
+
+                replaceFragment(new ProfileFragment());
+
+                selectedtab = 5;
             }
         });
 
         Bundle intent = getIntent().getExtras();
-        if (intent != null) {
-            String profileId = intent.getString("publisherId");
+ //       if (intent != null) {
+ //           String profileId = intent.getString("publisherId");
 
-            getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
+ //           getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-            bottomNavigationView.setSelectedItemId(R.id.nav_profile);
-        } else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
-        }
+ //           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+//            bottomNavigationView.setSelectedItemId(R.id.nav_profile);
+  //      } else {
+  //          getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
+  //      }
     }
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+    }
+
 }
 
 //public class MainActivity extends AppCompatActivity {
@@ -158,4 +241,5 @@ public class MainActivity extends AppCompatActivity {
 //                .commit();
 //    }
 //}
+
 
