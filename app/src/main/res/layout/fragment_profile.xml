@@ -27,7 +27,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:textColor="@color/colorBlack"
-                    android:text="hahaha"
+                    android:textStyle="bold"
                     android:textSize="15dp"
                     />
 
