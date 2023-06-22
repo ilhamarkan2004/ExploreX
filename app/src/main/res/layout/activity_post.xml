@@ -33,13 +33,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="POST"
-                    android:id="@+id/post"
-                    android:textSize="18sp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="15dp"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/close"
+                    android:fontFamily="sans-serif"
+                    android:text="Tambah Postingan"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14dp" />
 
             </RelativeLayout>
 
@@ -70,7 +70,14 @@
             android:id="@+id/description"
             app:socialFlags="hashtag|mention"
             app:hashtagColor="@color/colorPrimary"/>
-
+        <Button
+            android:id="@+id/post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_background"/>
     </LinearLayout>
+
 
 </LinearLayout>
