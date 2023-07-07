@@ -156,16 +156,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Bundle intent = getIntent().getExtras();
- //       if (intent != null) {
- //           String profileId = intent.getString("publisherId");
 
- //           getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
-
- //           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-//            bottomNavigationView.setSelectedItemId(R.id.nav_profile);
-  //      } else {
-  //          getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
-  //      }
     }
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
